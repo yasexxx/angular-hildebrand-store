@@ -2,9 +2,9 @@
 Single Web Application built by using  Angular Framework, ng-bootstrap and other useful libraries.
 
 # Requirements to run:
-*Node.js >= v.12.18
-*Angular CLI local v.10.5
-*Run on windows 10
+* Node.js >= v.12.18
+* Angular CLI local v.10.5
+* Run on windows 10
 
 # Procedure:
 1. Clone repository on https://github.com/yasexxx/hildebrand-store-ng.git
