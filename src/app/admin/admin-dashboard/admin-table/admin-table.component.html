@@ -1,0 +1,39 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Products</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Payment Option</th>
+      <th scopre="col">Total Amount</th>
+      <th scopre="col">Date of Order</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries">
+      <th scope="row">{{ country.id }}</th>
+      <td>
+        {{ country.user }}
+      </td>
+      <td>{{ country.product}}</td>
+      <td>{{ country.quantity | number}}</td>
+      <td>{{ country.price | number}}</td>
+      <td>{{ country.paymentOption | uppercase}}</td>
+      <td>{{ country.totalAmount | number }}</td>
+      <td>{{ country.date | date }}</td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+    </ngb-pagination>
+  
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="13">13 items per page</option>
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+    </select>
+  </div>

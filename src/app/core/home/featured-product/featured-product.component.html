@@ -1,0 +1,21 @@
+<div class="container-img" *ngIf="toShow">
+    <div *ngFor="let product of featuredProduct$; index as i; trackBy:trackerImg" class="img-adjust card">
+        <a>
+          <img [defaultImage]="blurred" [lazyLoad]="convert2Base64(product)" class="img-a-display" [alt]="'image-'+i">
+          </a>
+      <br><p (click)="singleProduct(product.id)" role="button">{{product.productName}}</p>
+      <p class="text-a-align">{{product.price |currency:"PHP":"symbol"}}</p>
+      <button (click)="addCart(product,1,userId)" class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
+      </div>
+</div>
+
+<div class="container-img" *ngIf="!toShow">
+  <div class="img-adjust card" *ngFor="let item of extArr$" class="img-adjust card">
+    <ngx-skeleton-loader  count="1" animation="pulse" [theme]="{
+      'height': '20rem',
+      'background-color': '#a09da5',
+      'margin-bottom': '-6px'
+    }"></ngx-skeleton-loader>
+  </div>
+</div>
+

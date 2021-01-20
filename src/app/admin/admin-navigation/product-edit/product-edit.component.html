@@ -1,0 +1,145 @@
+<div [ngClass]="{'container-a-create': isCreate}">
+
+    <h2>Edit Product:</h2>
+
+
+      <form #productForm="ngForm" (ngSubmit)="checkUpdate(productForm)">
+        <div>
+          <div [ngClass]="{'create-a-form form-column': isCreate}">
+            <label class="'my-auto font-weight-bold" for="name">Name:</label>
+            <input type="text" minlength="4" class="form-control" aria-describedby="validateName1" id="name" required [(ngModel)]="product.productName" name="name" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name.errors.required">
+                * &nbsp;Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                *&nbsp; Name must be at least 4 characters long.
+              </div>
+            </div>
+            <label class="'my-auto font-weight-bold" for="description">Description:</label>
+            <textarea minlength="10" id="description" class="form-control" name="description" [(ngModel)]="product.description" required rows="5" style="resize:none;" #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+              <div *ngIf="description.errors.required">
+                *&nbsp; Give a description about the product.
+              </div>
+              <div *ngIf="description.errors.minlength">
+                * &nbsp;The description must be at least 10 characters long.
+              </div>
+            </div>
+            <label class="'my-auto font-weight-bold" for="price">Price:</label>
+            <input type="number" class="form-control" id="price" required [(ngModel)]="product.price" name="price" #price="ngModel">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+              <div *ngIf="price.errors.required">
+                * &nbsp; Set price for the product.
+              </div>
+            </div>
+            <label class="'my-auto font-weight-bold" for="category">Category:</label>
+            <input type="text" class="form-control" id="category" required [(ngModel)]="product.category" name="category" #category="ngModel">
+              <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">  
+              <div *ngIf="category.errors.required">
+                  * &nbsp; Specify the category.
+                </div>
+              </div>
+            <label class="'my-auto font-weight-bold" for="availableProduct">Available Product:</label>
+            <input type="number" class="form-control" id="availableProduct" required [(ngModel)]="product.availableProduct" name="availableProduct" #availableProduct="ngModel">
+                <div *ngIf="availableProduct.invalid && (availableProduct.dirty || availableProduct.touched)" class="alert alert-danger">   
+                <div *ngIf="availableProduct.errors.required">
+                    *&nbsp; Set the number of available products.
+                  </div>
+                </div>
+            <label class="'my-auto font-weight-bold" for="publish">Status:</label>
+            <input type="button" class="form-control btn btn-primary" id="publish" [value]="published" (click)="publishCheck(product.isPublished)">
+            
+            <hr>
+              <strong>Post:</strong>
+              This product will be posted on different pages select below where to post it.
+              <p>Note: <span class="text-success">Green</span> = Select <br> <span class="text-danger">Red</span> = Deselect</p>
+              <div class="btn-group btn-group-toggle form-group">
+                <label [ngClass]="{'btn-success': product.post.topProduct , 'btn-danger': !product.post.topProduct}" ngbButtonLabel>
+                  <input type="checkbox" id="topProduct" name="topProduct" ngbButton [(ngModel)]="product.post.topProduct">
+                   Top Product
+                </label>
+                <label [ngClass]="{'btn-success': product.post.featuredProduct , 'btn-danger': !product.post.featuredProduct}" ngbButtonLabel>
+                  <input type="checkbox" id="featuredProduct" name="featuredProduct" ngbButton [(ngModel)]="product.post.featuredProduct">
+                   Featured Product
+                </label>
+                <label [ngClass]="{'btn-success': product.post.latestProduct , 'btn-danger': !product.post.latestProduct}" ngbButtonLabel>
+                  <input type="checkbox" id="latestProduct" name="latestProduct" ngbButton [(ngModel)]="product.post.latestProduct"> 
+                  Latest Product
+                </label>
+                <label [ngClass]="{'btn-success': product.post.supermarketProduct , 'btn-danger': !product.post.supermarketProduct}" ngbButtonLabel>
+                  <input type="checkbox" id="supermarketProduct" name="supermarketProduct" ngbButton [(ngModel)]="product.post.supermarketProduct"> 
+                  SuperMarket Product
+                </label>
+                <label [ngClass]="{'btn-success': product.post.restaurantProduct , 'btn-danger': !product.post.restaurantProduct}" ngbButtonLabel>
+                  <input type="checkbox" id="restaurantProduct" name="restaurantProduct" ngbButton [(ngModel)]="product.post.restaurantProduct"> 
+                  Restaurant Product
+                </label>
+                <label [ngClass]="{'btn-success': product.post.other , 'btn-danger': !product.post.other}" ngbButtonLabel>
+                  <input type="checkbox" id="other" name="other" ngbButton [(ngModel)]="product.post.other"> 
+                  Other
+                </label>
+              </div>
+
+
+             <div *ngIf="isTypePost">
+              <strong>Supermarket Post:</strong>
+              <br>
+              <div class="btn-group btn-group-toggle form-group">
+                <label [ngClass]="{'btn-success': product.options.supermarketGrocery , 'btn-danger': !product.options.supermarketGrocery}" ngbButtonLabel>
+                  <input [disabled]="!product.post.supermarketProduct" type="checkbox" id="supermarketGrocery" name="supermarketGrocery" ngbButton [(ngModel)]="product.options.supermarketGrocery"> 
+                  Grocery
+                </label>
+                <label [ngClass]="{'btn-success': product.options.supermarketVegetable , 'btn-danger': !product.options.supermarketVegetable}" ngbButtonLabel>
+                  <input [disabled]="!product.post.supermarketProduct" type="checkbox" id="supermarketVegetable" name="supermarketVegetable" ngbButton [(ngModel)]="product.options.supermarketVegetable"> 
+                  Vegetables
+                </label>
+                <label [ngClass]="{'btn-success': product.options.supermarketCannedGoods , 'btn-danger': !product.options.supermarketCannedGoods}" ngbButtonLabel>
+                  <input [disabled]="!product.post.supermarketProduct" type="checkbox" id="supermarketCannedGoods" name="supermarketCannedGoods" ngbButton [(ngModel)]="product.options.supermarketCannedGoods"> 
+                  Canned Goods
+                </label>
+              </div>
+
+              <br>
+              <strong>Restaurant Post:</strong>
+              <br>
+              <div class="btn-group btn-group-toggle form-group">
+                <label [ngClass]="{'btn-success': product.options.restaurantFood , 'btn-danger': !product.options.restaurantFood}" ngbButtonLabel>
+                  <input [disabled]="!product.post.restaurantProduct" type="checkbox" id="restaurantFood" name="restaurantFood" ngbButton [(ngModel)]="product.options.restaurantFood"> 
+                  Food
+                </label>
+                <label  [ngClass]="{'btn-success': product.options.restaurantDrink , 'btn-danger': !product.options.restaurantDrink}" ngbButtonLabel>
+                  <input [disabled]="!product.post.restaurantProduct" type="checkbox" id="restaurantDrink" name="restaurantDrink" ngbButton [(ngModel)]="product.options.restaurantDrink"> 
+                  Drink
+                </label>
+                <label [ngClass]="{'btn-success': product.options.restaurantDessert , 'btn-danger': !product.options.restaurantDessert}" ngbButtonLabel>
+                  <input [disabled]="!product.post.restaurantProduct" type="checkbox" id="restaurantDessert" name="restaurantDessert" ngbButton [(ngModel)]="product.options.restaurantDessert"> 
+                  Dessert
+                </label>
+              </div>
+             </div>
+
+              
+          </div>
+          <div  class="create-a-form">
+            <h4>Upload Image:</h4>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" (change)="onFileChanged($event)" required>
+              <label class="custom-file-label" for="inputFiles">{{chooseFile}}</label>
+            </div>
+          </div>
+          <div *ngIf="imageDataUrl">
+            <img [src]="imageDataUrl" alt="product-image-purchase" class="image-attach">
+          </div>
+
+        <div class="btn-1">
+          <button type="submit" class="btn btn-warning">Update</button>
+          <a routerLink="../../edit" type="button" class="btn btn-dark" role="button">Cancel</a>
+        </div>
+        </div>
+      
+      </form>
+
+
+
+</div>

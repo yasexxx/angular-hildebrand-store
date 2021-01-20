@@ -1,0 +1,59 @@
+
+<!-- Using Reactive form approach -->
+<div [defaultImage]="loginBg" [lazyLoad]="loginBg" class="container-a-login">
+  <br/>
+  <div class="card card-a-center">
+    <div class="card-header">
+      <span style="font-size: 15px;" class="text-white">Login:</span>
+    </div>
+    <div class="card-body bg-light">
+      <div class="col justify-content-center">
+        
+        
+        <div class="spin-1" *ngIf="isLoading | async">
+          <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+
+        <form [formGroup]=loginForm (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">Username: </label>
+            <input type="username" name="username" id="username" formControlName="username"  class="form-control" required/>
+        </div>
+          <div class="form-group">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" formControlName="password" class="form-control" required/>
+          </div>
+          <div *ngIf="isLoggedFailed" class="alert alert-danger">
+            {{errorMessage}}
+          </div>
+            <div class="not-login">
+              No account yet? <a [routerLink]="[ '/register']">Click here.</a>
+            </div>
+            <button type="submit" class="btn-1 btn-dark btn-block btn-login my-4 ml-auto">
+              Login
+            </button>
+        </form>
+        <hr>
+        <div class="login-with">
+          Login with
+        </div>
+        <div class="social-login">
+          <button (click)="signInWithGoogle()" class="btn-1 btn-google">
+            <img class="google-g" [src]="'assets/images/google-g.webp'">
+            <span>Google</span>
+          </button>
+          <div class="p-0 p-sm-2">&nbsp;</div>
+          <button (click)="signInWithFb()" class="btn-1 btn-facebook">
+            <img class="facebook-f" [src]="'assets/images/facebook-f.webp'">
+            <span>Facebook</span>
+          </button>
+        </div>
+      </div>
+  </div>
+  </div>
+  <br/>
+</div>
+
+

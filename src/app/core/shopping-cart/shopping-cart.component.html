@@ -1,0 +1,34 @@
+<app-content-header [headerTitle]="'Shopping Cart'"></app-content-header>
+  <div class="wrapper-content" *ngIf="(addedCart.length > 0); else emptyCart">
+      <div class="ml-2 product-list-content">
+        <hr/>
+        <div *ngFor="let product of addedCart" class="wrapper-prod">
+          <div *ngIf="(product)" class="product-details">
+            <img  [src]="convert2Base64(product.img)" alt="" class="img-product"/>
+            <h2 class="my-auto">{{product.name}}</h2>
+            <p class="my-auto">{{product.price |  currency:'USD'}}</p>
+            <div class="my-auto mx-auto mx-lg-0">
+              <p>Quantity:</p>
+              <ngx-number-spinner (change)="changeCartValue($event, product.name)" class="input-spin" [value]="product.quantity" [min]="0" [max]="15"></ngx-number-spinner>
+
+            </div>
+            <i class="fa fa-trash del-btn my-auto" aria-hidden="true" (click)="removeItem(product.name)" role="button"></i>
+
+          </div>
+          <hr/>
+        </div>
+      </div>
+    <div class="card proceed-checkout" [ngStyle]="!(addedCart.length > 0) && {'visibility': 'hidden'}">
+      <p class="font-weight-bold mt-4 mx-auto">Total Amount: {{ totalAmount | currency: 'USD' }}</p>
+      <button (click)="checkOut()" class="rounded proceed-btn mx-5">Proceed to Checkout</button>
+    </div>
+
+  </div>
+  <ng-template #emptyCart>
+    <div class="cart-empty" *ngIf="(addedCart.length === 0) || (cartApiArray.length === 0)">Missing cart try adding one!
+      <div><a routerLink="/" class="go-home">Click here</a> to go homepage</div>
+    </div>
+
+  </ng-template>
+
+

@@ -1,0 +1,110 @@
+<div class="col-12 bg-white pt-4">
+                        <div class="row">
+                            <div class="col-lg-auto">
+                                <div (click)="changeTitle('Home')" class="main-logo font-weight-bold text-center text-lg-left">
+                                    <a style="color: black;" routerLink="/">{{title | uppercase}}</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 search-a-bar">
+                                <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm)">
+                                    <div class="form-group ">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-dark shadow-none" name="searchInput" id="searchInput" formControlName="searchInput" placeholder="Search..." required>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-outline-dark"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="search-result" *ngIf="activateDropdown && onShow">
+                                            <div class="result-class" *ngFor = "let item of searchResult | searchFilterCustom:keyword">
+                                                <div (click)="navigateToView(item.id, item.productName)" role="button" class="item-result">{{item.productName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row text-center text-lg-left header-item-holder">
+                                <a (click)="changeTitle('Your Wishlist')" routerLink="wishlist" class="d-flex">
+                                    <mat-icon aria-hidden="false" aria-label="favorite" loading="lazy" class="icon-select1 mr-4">favorite</mat-icon>
+                                    <strong class="qty-icon mt-2 mr-3">0</strong>
+                                </a>
+                                <a (click)="changeTitle('Your Cart')" routerLink="/cart" class="d-flex mr-2 mb-3">
+                                    <mat-icon aria-hidden="false" aria-label="shopping" class="icon-select1 mr-4">shopping_cart</mat-icon>
+                                    <strong class="qty-icon mt-2">{{cart}}</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Nav -->
+                        <div class="row">
+                            <nav class="bg-white navbar navbar-expand-lg navbar-light col-12 nav-nav">
+                                <button  class="navbar-toggler d-lg-none border-0 no-outline-a" type="button" [attr.aria-expanded]="!collapsed" aria-controls="#mainNav" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="navbar-collapse" [class.collapse]="collapsed" id="mainNav">
+                                    <div class="site-title font-weight-bold text-center text-lg-left">
+                                        <hr>
+                                        <a (click)="collapsedActivate('Home')" routerLink="/">{{title | uppercase}}</a>
+                                        <hr>
+                                    </div>
+                                    <ul class="nav navbar-nav mx-auto mt-lg-0 nav-a-font no-outline-a" tabindex="1">
+                                        <li (click)="collapsedActivate('Home')" class="nav-item">
+                                            <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block">
+                                              <a role="button" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Products</a>
+                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop-profile">
+                                                <a routerLink="/supermarket"><button (click)="collapsedActivate('Supermarket')" ngbDropdownItem>Supermarket</button></a>
+                                                <a routerLink="/restaurant"><button (click)="collapsedActivate('Restaurant')" ngbDropdownItem>Restaurant</button></a>
+                                              </div>
+                                            </div>
+                                        </li>
+                                        <li (click)="collapsedActivate('Services')" class="nav-item">
+                                            <a class="nav-link" routerLink="/services">Services</a>
+                                        </li>
+                                        <li (click)="collapsedActivate('Contact')" class="nav-item">
+                                            <a class="nav-link" routerLink="/contact">Contact</a>
+                                        </li>
+                                        <li (click)="collapsedActivate('About')" class="nav-item">
+                                            <a class="nav-link" routerLink="/about">About</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="hide-a-header">
+                                          <ul class="navbar-nav">
+                                              <li class="nav-item mt-2 mb-1">
+                                        <a href="tel:+6395-5241-349"><i class="fa fa-phone-square mr-2"></i>+6395-5241-349</a>
+                                              </li>
+                                               <li class="nav-item mb-1">
+                                        <a href="mailto:mailingme@workshop.com"><i class="fa fa-envelope mr-2"></i>hildebrandlig11@gmail.com</a>
+                                              </li>
+                                              <div *ngIf="!(isLoggedIn)" class="log-in">
+                                                <li (click)="collapsedActivate('Register')" class="nav-item mb-1">
+                                                    <a routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Register</a>
+                                                </li>
+                                                <li (click)="collapsedActivate('Login')" class="nav-item mb-3">
+                                                    <a routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
+                                                </li>
+                                              </div>
+                                              <li>
+                                                <div *ngIf="isLoggedIn" class="header-a-user2">
+                                                  <div ngbDropdown (mouseover)="mouseOver2()" (mouseout)="mouseOut2()" [open]="isHover2" class="d-inline-block">
+                                                      <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false" role="button"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{{userName}}</a>
+                                                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="in-profile">
+                                                        <button (click)="viewProfile()" ngbDropdownItem>Profile</button>
+                                                        <button (click)="viewOrder()" ngbDropdownItem>Order</button>
+                                                        <button *ngIf="isAdmin$" (click)="navigateAdmin()" ngbDropdownItem>Admin</button>
+                                                        <button (click)="viewCart()" ngbDropdownItem>Cart</button>
+                                                        <button (click)="logout()" ngbDropdownItem>Logout</button>
+                                                      </div>
+                                                    </div>
+                                               </div>
+                                              </li>
+                                          </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

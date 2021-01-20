@@ -1,0 +1,21 @@
+
+.container-a-restaurant {
+    display: flex;
+    flex-direction: column;
+    background: #a8a7a7;
+    min-height: 120vh;
+  }
+
+  .bg-a-img {
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+  }
+
+  .bg-a-img h1 {
+    color: rgb(36, 35, 35);
+    font: xx-large bold;
+    text-align: center;
+    margin: 6rem 0;
+
+  }

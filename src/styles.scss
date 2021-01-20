@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~font-awesome/css/font-awesome.min.css';
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~intl-tel-input/build/css/intlTelInput.css';
+@import './assets/sass/_base.scss';
+
+/* -- custom css style --  */
+.chartContainer canvas {
+    max-height: 250px;
+    width: auto;
+}
+
+.chartContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+

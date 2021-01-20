@@ -1,0 +1,61 @@
+
+.container-a-sales{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+th[sortable4] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-action {
+  display: grid;
+  margin: 0 1rem;
+  gap:1rem;
+}
+
+.sales-1 {
+    width: 60%;
+    height: 100%;
+    margin: 1rem auto;
+}
+
+
+.page-nation {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+}
+
+.page-nation > ngb-pagination {
+  display:flex;
+  justify-content: center;
+}
+
+select.custom-select {
+  width: auto;
+}
+
+
+
+
+@media (max-width: 730px) {
+  .sales-1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 530px) {
+  .sales-1 {
+    width: 90%;
+  }
+}
+
+
+@media (max-width: 420px) {
+  .sales-1 {
+    width: 98%;
+  }
+}
+

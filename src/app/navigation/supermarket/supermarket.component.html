@@ -1,0 +1,11 @@
+<div class="container-a-supermarket">
+  <div class="bg-a-img" [defaultImage]="supermarketBg" [lazyLoad]="supermarketBg">
+    <h1>Supermarket</h1>
+  </div>
+    <app-supermarket-products
+    [page]="1" [active]="1"
+    [allProducts$]="allProducts"
+    [vegetableProducts$]="vegetableProducts"
+    [groceryProducts$]="groceryProducts"
+    [cannedGoodsProducts$]="cannedGoodsProducts"></app-supermarket-products>
+</div>

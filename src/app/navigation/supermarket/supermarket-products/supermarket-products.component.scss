@@ -1,0 +1,164 @@
+li.h1 {
+  font-size: 1.5rem;
+}
+li.h2 {
+  font-size: 1.5rem;
+}
+.pick-color a{
+  color: black;
+}
+
+li.h1 a {
+  color: white;
+}
+li.h2 a{
+  color:black;
+}
+li.h1 a:hover {
+  color: black;
+}
+
+.no-content-found {
+  text-align: center;
+  margin: 15vh 0;
+}
+
+.img-supermarket {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+}
+
+.img-sup {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.img-btn {
+  position: sticky;
+  text-align: center;
+
+}
+
+.name-img {
+  text-align: center;
+}
+
+
+
+.img-supermarket > .card:hover {
+  box-shadow: #7c7b7b 0 0 10px 1px;
+}
+
+
+.hide-price-hover {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem 5vw;
+}
+
+.icon-container-1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 3rem;
+
+}
+
+.card > .icon-container-1 {
+  display:none;
+}
+.card:hover > .icon-container-1{
+  display: flex;
+}
+
+.card > .hide-price-hover {
+  display: flex;
+}
+
+.card:hover > .hide-price-hover {
+  display: none;
+}
+
+.iconic-btn:hover {
+  transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+.iconic-btn2:hover {
+  transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+.tab-of-product {
+  margin: 4rem 5rem 1rem;
+}
+
+.products-of-market {
+  margin: 0rem 5rem;
+}
+
+.pagination-a-market {
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width:992px) and (min-width:650px){
+
+  .img-supermarket {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  }
+
+@media (max-width:649px){
+
+li.h1 {
+      font-size: 1rem;
+    }
+li.h2 {
+      font-size: 1rem;
+    }
+.img-supermarket {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+.icon-container-1 {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 7rem;
+    }
+.card {
+      height: 350px;
+    }
+    }
+@media (max-width:430px){
+.tab-of-product {
+    margin: 3rem 1rem;
+  }
+.products-of-market {
+    margin: 0rem 2rem;
+  }
+}
+@media (max-width:285px){
+.products-of-market {
+    margin: 0rem .4rem;
+  }
+  .icon-container-1 {
+    margin-left: -1rem;
+  }
+}
+@media (max-width:190px){
+  .icon-container-1 {
+    margin-left: -2rem;
+  }
+
+  .tab-of-product {
+    overflow: hidden;
+  }
+}
+  

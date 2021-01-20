@@ -1,0 +1,62 @@
+
+.bg-a-signup {
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: 1;
+  min-height: 100vh;
+}
+
+.signup-a-resize {
+  margin: 2rem auto;
+  width: 40em;
+
+}
+
+.form-a-adjust {
+  margin: 2em 2em;
+}
+
+.card-header {
+  background: #002447;
+}
+
+.spin-1 {
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 998;
+
+}
+.spin-1 > div {
+  width: 6rem;
+  height: 6rem;
+}
+
+.success-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.success-icon > i {
+  font-size: 12rem;
+  color: #17b824;
+}
+
+.msg-success{
+  margin: 1rem 0 8rem 0;
+}
+
+
+@media (max-width: 570px) {
+  .signup-a-resize {
+    margin: 3em auto;
+    width: 90%;
+  }
+
+}
